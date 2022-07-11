@@ -1,9 +1,10 @@
 spring:
   data:
     mongodb:
-      host: mongodb
-      port: 27017
-      database: vehicle
+      #host: mongodb
+      #port: 27017
+      #database: vehicle
+      uri: mongodb://localhost:27017/vehicle
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
