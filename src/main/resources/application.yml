@@ -1,0 +1,15 @@
+spring:
+  data:
+    mongodb:
+      host: mongodb
+      port: 27017
+      database: vehicle
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+logging:
+  level:
+    org:
+      springframework: ERROR
+    io:
+      app: TRACE
