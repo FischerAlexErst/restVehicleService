@@ -48,6 +48,9 @@ public class VehicleService {
             return null;
         }
         return properties.entrySet().stream().map(entry -> {
+            if(entry.getValue() instanceof Integer){
+                return entry;
+            }
             if(NumberUtils.isParsable((String)entry.getValue())){
                 entry.setValue(Double.parseDouble((String)entry.getValue()));
             }
