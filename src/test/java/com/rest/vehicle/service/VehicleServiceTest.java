@@ -15,6 +15,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -109,6 +111,10 @@ public class VehicleServiceTest {
         vehicleDto.setId(ID);
         vehicleDto.setVin(VIN + "1");
         vehicleDto.setLicensePlateNumber(LPN);
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("key1","12");
+        properties.put("key2","value");
+        vehicleDto.setProperties(properties);
         when(vehicleRepository.findById(any())).thenReturn(Optional.of(vehicle));
         when(vehicleRepository.findByVin(any())).thenReturn(Optional.of(vehicle));
 
