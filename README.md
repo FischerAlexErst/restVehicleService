@@ -29,4 +29,9 @@ should be able to handle both json and xml as properties.
 
 Deliverables:
 Public github / gitlab / other git link with the project
-Instructions to run
+Instructions to run:
+
+1. mvn clean install
+2. docker-compose up
+3. http://localhost:8080/swagger-ui.html
+
