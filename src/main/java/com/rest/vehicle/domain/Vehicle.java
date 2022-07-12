@@ -20,5 +20,5 @@ public class Vehicle{
     private String name;
     private String vin;
     private String licensePlateNumber;
-    private Map<String, String> properties;
+    private Map<String, Object> properties;
 }

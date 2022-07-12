@@ -7,12 +7,16 @@ import com.rest.vehicle.exception.VehicleNotFoundException;
 import com.rest.vehicle.repository.VehicleRepository;
 import com.rest.vehicle.repository.VehicleRepositoryCustom;
 import com.rest.vehicle.util.SortAndFilterUtil;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,6 +35,7 @@ public class VehicleService {
     }
 
     public VehicleDto createVehicle(VehicleDto vehicleDto) {
+        vehicleDto.setProperties(convertPropertyIntoRealFormat(vehicleDto.getProperties()));
         Vehicle vehicle = inbound(vehicleDto);
         vehicle.setId(null);
         checkVehicle(vehicle);
@@ -38,7 +43,20 @@ public class VehicleService {
         return outbound(vehicle);
     }
 
+    private Map<String, Object> convertPropertyIntoRealFormat(Map<String, Object> properties) {
+        if(Optional.ofNullable(properties).isEmpty()){
+            return null;
+        }
+        return properties.entrySet().stream().map(entry -> {
+            if(NumberUtils.isParsable((String)entry.getValue())){
+                entry.setValue(Double.parseDouble((String)entry.getValue()));
+            }
+            return entry;
+        }).collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue));
+    }
+
     public VehicleDto updateVehicle(String id, VehicleDto vehicleDto) {
+        vehicleDto.setProperties(convertPropertyIntoRealFormat(vehicleDto.getProperties()));
         Vehicle vehicleFound = inbound(getVehicleById(id));
         Vehicle vehiclePotential = inbound(vehicleDto);
         checkUpdatableVehicle(vehicleFound, vehiclePotential);

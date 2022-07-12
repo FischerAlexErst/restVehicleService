@@ -23,5 +23,5 @@ public class VehicleDto{
     @Pattern(regexp = "^[a-zA-Z0-9]+$")
     @NotBlank
     private String licensePlateNumber;
-    private Map<String, String> properties;
+    private Map<String, Object> properties;
 }
