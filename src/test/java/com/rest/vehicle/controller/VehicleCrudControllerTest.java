@@ -31,14 +31,6 @@ class VehicleCrudControllerTest {
     @Mock
     VehicleService vehicleService;
 
-    @BeforeEach
-    void setUp() {
-    }
-
-    @Test
-    void findAllVehicle() {
-    }
-
     @Test
     void getVehicleByIdWithExistingId() {
         MockHttpServletRequest request = new MockHttpServletRequest();
@@ -54,11 +46,6 @@ class VehicleCrudControllerTest {
     void createVehicleWithSuitableData() {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-        Vehicle vehicle = new Vehicle();
-        vehicle.setId(ID);
-        vehicle.setVin(VIN);
-        vehicle.setName(NAME);
-        vehicle.setLicensePlateNumber(LPN);
 
         VehicleDto vehicleDto = new VehicleDto();
         vehicleDto.setVin(VIN);
@@ -76,11 +63,6 @@ class VehicleCrudControllerTest {
     void updateVehicleByIdWithSuitableData() {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-        Vehicle vehicle = new Vehicle();
-        vehicle.setId(ID);
-        vehicle.setVin(VIN);
-        vehicle.setName(NAME);
-        vehicle.setLicensePlateNumber(LPN);
 
         VehicleDto vehicleDto = new VehicleDto();
         vehicleDto.setVin(VIN);
